@@ -1,2 +1,1 @@
-# vstest2080
-dotnet/vstest#2080
+https://github.com/microsoft/vstest/issues/2120
