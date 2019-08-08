@@ -1,0 +1,37 @@
+version: 2.1
+executors:
+  dotnet:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+    working_directory: ~/workspace
+
+jobs:
+  test:
+    executor: dotnet
+    steps:
+      - checkout
+      - run:
+          name: Display Workspace Information
+          command: |
+            pwd
+            ls -alias
+            which dotnet
+            dotnet --info
+            git symbolic-ref --short HEAD || true
+      - run:
+          name: Run Test Projects
+          command: dotnet test
+      - run:
+          name: Dependency Graph
+          command: dotnet list package || true
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /^(?!v).+/
