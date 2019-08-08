@@ -20,7 +20,7 @@ jobs:
             git symbolic-ref --short HEAD || true
       - run:
           name: Run Test Projects
-          command: dotnet test
+          command: dotnet test -v n
       - run:
           name: Dependency Graph
           command: dotnet list package || true
