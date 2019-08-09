@@ -19,6 +19,12 @@ jobs:
             dotnet --info
             git symbolic-ref --short HEAD || true
       - run:
+          name: Run Restore
+          command: dotnet restore -v n
+      - run:
+          name: Run Build
+          command: dotnet build -v n
+      - run:
           name: Run Test Projects
           command: dotnet test -v n
       - run:
