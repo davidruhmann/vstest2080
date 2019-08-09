@@ -1,0 +1,7 @@
+**/obj
+**/bin
+.vs
+.git
+.gitignore
+.circleci
+[Dd]ockerfile
