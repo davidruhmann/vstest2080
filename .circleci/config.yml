@@ -23,10 +23,10 @@ jobs:
           command: dotnet restore -v n
       - run:
           name: Run Build
-          command: dotnet build -v n
+          command: dotnet build --no-restore -v n
       - run:
           name: Run Test Projects
-          command: dotnet test -v n
+          command: dotnet test --no-restore --no-build -v n
       - run:
           name: Dependency Graph
           command: dotnet list package || true
