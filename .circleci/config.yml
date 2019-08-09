@@ -2,7 +2,7 @@ version: 2.1
 executors:
   dotnet:
     docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+      - image: mcr.microsoft.com/dotnet/core/sdk:latest
     working_directory: ~/workspace
 
 jobs:
@@ -19,8 +19,14 @@ jobs:
             dotnet --info
             git symbolic-ref --short HEAD || true
       - run:
+          name: Run Restore
+          command: dotnet restore -v n
+      - run:
+          name: Run Build
+          command: dotnet build --no-restore -v n
+      - run:
           name: Run Test Projects
-          command: dotnet test -v n
+          command: dotnet test --no-restore --no-build -v n
       - run:
           name: Dependency Graph
           command: dotnet list package || true
