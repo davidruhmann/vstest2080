@@ -26,7 +26,7 @@ jobs:
           command: dotnet build --no-restore -v n
       - run:
           name: Run Test Projects
-          command: dotnet test --no-restore --no-build
+          command: dotnet test --no-restore --no-build '--logger:Console;noprogress=true'
       - run:
           name: Dependency Graph
           command: dotnet list package || true
